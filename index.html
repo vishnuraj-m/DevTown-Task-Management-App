@@ -15,6 +15,25 @@
 </head>
 
 <body>
+    <!-- Popup Section Starts -->
+    <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewModalLabel">Add New Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup Section End -->
     <!-- Navbar Starts-->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -30,7 +49,8 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                 </ul>
-                <button class="btn btn-primary d-flex align-items-center gap-2" type="submit">
+                <button class="btn btn-primary d-flex align-items-center gap-2" type="submit" data-bs-toggle="modal"
+                    data-bs-target="#addNewModal">
                     <i class="fas fa-plus"></i> Add New</button>
             </div>
         </div>
