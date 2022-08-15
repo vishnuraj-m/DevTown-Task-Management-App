@@ -14,7 +14,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="loadInitialData()">
     <!-- Mobile View Button Starts -->
     <div class="add__new__btn__mobile__only d-md-none">
         <button class="btn btn-primary d-flex align-items-center gap-2" type="submit" data-bs-toggle="modal"
@@ -24,14 +24,14 @@
     <!-- Mobile View Button End -->
     <!-- Popup Section Starts -->
     <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addNewModalLabel">Add New Task</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form onsubmit="return false">
                         <div class="mb-3">
                             <label for="imageUrl" class="form-label">Image URL</label>
                             <input type="url" class="form-control" id="imageUrl"
@@ -49,16 +49,40 @@
                         <div class="mb-3">
                             <label for="taskDescription" class="form-label">Task Description</label>
                             <textarea class="form-control" id="taskDescription"
-                                placeholder="Explain Something about it..." rows="4" required></textarea>
+                                placeholder="Explain something about it..." rows="4" required></textarea>
                         </div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" type="button" class="btn btn-primary" onclick="handleSubmit()">
+                            Save changes
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- Popup Section End -->
+    <!-- show task starts -->
+    <div class="modal fade" id="showTask" tabindex="-1" aria-labelledby="showTaskLabel" aria-hidden="true">
+        <!-- !change the size modal-lg -->
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="showTaskLabel">Task Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- !here accessed Dom -->
+                <div class="modal-body task__modal__body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- show task end -->
     <!-- Navbar Starts-->
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
@@ -76,7 +100,8 @@
                 </ul>
                 <button class="btn btn-primary d-flex align-items-center gap-2" type="submit" data-bs-toggle="modal"
                     data-bs-target="#addNewModal">
-                    <i class="fas fa-plus"></i> Add New</button>
+                    <i class="fas fa-plus"></i>Add New
+                </button>
             </div>
         </div>
     </nav>
@@ -88,7 +113,7 @@
                 <div class="col-md-6">
                     <div class="input-group flex-nowrap shadow-lg rounded">
                         <input type="search" class="form-control" placeholder="Search Task..." aria-label="Search Task"
-                            aria-describedby="addon-wrapping" />
+                            aria-describedby="addon-wrapping" oninput="searchTask.apply(this, arguments)" />
                         <span class="input-group-text" id="addon-wrapper">
                             <i class="fas fa-search"></i>
                         </span>
@@ -99,9 +124,7 @@
         <!-- Search Section End-->
         <!-- Content Section Starts-->
         <section class="mt-4">
-            <div class="row task__contents">
-                <h1>This Place show my task</h1>
-            </div>
+            <div class="row task__contents"></div>
         </section>
         <!-- Content Section End-->
     </div>
